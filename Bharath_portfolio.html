@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sai Bharath's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Profile Section */
+        .profile-container {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            padding: 40px;
+            border-radius: 15px;
+            color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .profile-left {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid white;
+            transition: transform 0.3s;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-right {
+            flex: 2;
+            padding-left: 40px;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            margin-right: 20px;
+            font-size: 24px;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+
+
+
+        /* Previous styles remain the same until education section */
+
+        .education-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .education-item {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 25px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .education-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(44, 62, 80, 0.1));
+            z-index: -1;
+        }
+
+        .education-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .edu-header h3 {
+            font-size: 1.4em;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+            border: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        .edu-header h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #2c3e50);
+            transition: width 0.3s ease;
+        }
+
+        .education-item:hover .edu-header h3::after {
+            width: 100%;
+        }
+
+        .edu-year {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .edu-degree {
+            font-size: 1.1em;
+            color: #34495e;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .edu-cgpa {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 10px;
+        }
+
+        .edu-cgpa strong {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .education-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .edu-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+
+
+
+
+
+
+
+        /* Section Styles */
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        /* Technical Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .skill-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #3498db, #2c3e50);
+            transition: width 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .skill-card:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover .skill-icon {
+            transform: scale(1.1);
+        }
+
+        .skill-title {
+            font-size: 1.3em;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-item {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.95em;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(52, 152, 219, 0.2);
+        }
+
+        .skill-item:hover {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .skill-highlight {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #666;
+            display: none;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(52, 152, 219, 0.05);
+        }
+
+        .skill-card:hover .skill-highlight {
+            display: block;
+        }
+
+        .coursework-container {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .coursework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .course-item {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            font-weight: 500;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+
+        .course-item i {
+            margin-right: 10px;
+            color: #3c648d;
+            font-size: 18px;
+        }
+
+        .course-item:hover {
+            background: #2c3e50;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+       .course-item:hover i {
+        color: #fff;
+        }
+
+        /* Projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .github-link {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            padding: 8px;
+            background: #3c648d;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .github-link:hover {
+            background: #2c3e50;
+        }
+
+        /* Certifications and Interests */
+        /* Certifications */
+        .certification-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .cert-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+
+        .cert-button {
+            background: #3c648d;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .cert-button:hover {
+            background: #2c3e50;
+        }
+
+        /* Interests */
+        .interests-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 10px;
+            justify-content: center;
+        }
+
+        .interest-item {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 1em;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .interest-item i {
+            font-size: 1.2em;
+        }
+
+        .interest-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-right {
+                padding-left: 0;
+                padding-top: 20px;
+            }
+
+            .social-links {
+                justify-content: center;
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Profile Section -->
+        <div class="profile-container">
+            <div class="profile-left">
+                <img src="https://res.cloudinary.com/dl01nkz1s/image/upload/v1717759036/Bharath_icu63i.png" alt="Profile Picture" class="profile-img">
+            </div>
+            <div class="profile-right">
+                <h1>Balam Venkata Sai Bharath</h1>
+                <p class="profile-degree">MTech Integrated in Software Engineering</p>
+                <p class="profile-roles">Software Engineer | Software Developer | Data Analyst | Data Scientist</p>
+                <div class="social-links">
+                    <a href="mailto:saibharath282002@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/sai-bharath-balam-4500b02b2/"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/SaiBharath28"><i class="fab fa-github"></i></a>
+                    <a href="tel:+917032943252"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Updated Education Section -->
+    <div class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="education-container">
+            <div class="education-item">
+                <div class="edu-header">
+                    <h3>Vellore Institute of Technology</h3>
+                    <span class="edu-year">2020–2025</span>
+                </div>
+                <p class="edu-degree">MTech Integrated in Software Engineering</p>
+                <div class="edu-cgpa">
+                    <strong>CGPA:</strong>
+                    <span>7.62</span>
+                </div>
+            </div>
+            
+            <div class="education-item">
+                <div class="edu-header">
+                    <h3>Sri Chaitanya Academy</h3>
+                    <span class="edu-year">2018–2020</span>
+                </div>
+                <p class="edu-degree">Board of Intermediate Education</p>
+                <div class="edu-cgpa">
+                    <strong>CGPA:</strong>
+                    <span>9.67</span>
+                </div>
+            </div>
+            
+            <div class="education-item">
+                <div class="edu-header">
+                    <h3>Sri Chaitanya School</h3>
+                    <span class="edu-year">2018</span>
+                </div>
+                <p class="edu-degree">Board of Secondary Education</p>
+                <div class="edu-cgpa">
+                    <strong>CGPA:</strong>
+                    <span>9.7</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="section">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="skill-title">Programming & Development</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Python</span>
+                    <span class="skill-item">Java</span>
+                    <span class="skill-item">SQL</span>
+                    <span class="skill-item">HTML/CSS</span>
+
+                </div>
+                <div class="skill-highlight">
+                    Extensive experience in development and database management
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="skill-title">AI & Machine Learning</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Machine Learning</span>
+                    <span class="skill-item">Deep Learning</span>
+                    <span class="skill-item">NLP</span>
+                    <span class="skill-item">Computer Vision</span>
+                    <span class="skill-item">Neural Networks</span>
+                </div>
+                <div class="skill-highlight">
+                    Implemented multiple ML models for real-world applications
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3 class="skill-title">DevOps & Tools</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Docker</span>
+                    <span class="skill-item">Kubernetes</span>
+                    <span class="skill-item">Jenkins</span>
+                    <span class="skill-item">Git</span>
+                    <span class="skill-item">AWS</span>
+                </div>
+                <div class="skill-highlight">
+                    Strong background in CI/CD and cloud infrastructure
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3 class="skill-title">Data Science & Analytics</h3>
+                <div class="skill-list">
+                    <span class="skill-item">NumPy</span>
+                    <span class="skill-item">Pandas</span>
+                    <span class="skill-item">Scikit-learn</span>
+                    <span class="skill-item">Matplotlib</span>
+                    <span class="skill-item">Power BI</span>
+                    <span class="skill-item">Looker Studio</span>
+                </div>
+                <div class="skill-highlight">
+                    Proficient in data analysis and visualization techniques
+                </div>
+            </div>
+
+            <div class="coursework-container">
+                <h2 class="section-title">Course Works</h2>
+                <div class="coursework-grid">
+                    <div class="course-item"><i class="fas fa-code"></i> Software Engineering</div>
+                    <div class="course-item"><i class="fas fa-sync-alt"></i>Software Development Life Cycle</div>
+                    <div class="course-item"><i class="fas fa-users-cog"></i> Agile Scrum</div>
+                    <div class="course-item"><i class="fas fa-cloud"></i> Cloud Computing</div>
+                    <div class="course-item"><i class="fas fa-database"></i> DBMS</div>
+                    <div class="course-item"><i class="fas fa-network-wired"></i> Computer Networks</div>
+                    <div class="course-item"><i class="fas fa-laptop-code"></i> OOPs</div>
+                    <div class="course-item"><i class="fas fa-layer-group"></i> Data Structures</div>
+                    <div class="course-item"><i class="fas fa-cogs"></i> Operating Systems</div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+    
+
+
+
+        
+    
+
+
+
+        <!-- Projects Section -->
+        <div class="section">
+            <h2 class="section-title">Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Plant Disease Detection Using CNNs</h3>
+                    <p>Designed and implemented a deep learning model using Convolutional Neural Networks (CNN) to classify leaf images into 39 categories. This system provides farmers and researchers with an efficient tool for early disease detection, reducing crop losses, optimizing pesticide usage, and promoting sustainable agricultural practices.</p>
+                    <a href="https://github.com/SaiBharath28/Plant-Disease-Detection-using-CNN" class="github-link">View on GitHub</a>
+                </div>
+                <div class="project-card">
+                    <h3>Trauma Detection AI Chat</h3>
+                    <p>Developed an AI-driven platform that leverages Natural Language Processing (NLP) and voice analysis to detect early symptoms of trauma. The system integrates with a hospital linkage module, ensuring users receive timely mental health support by connecting them to nearby Medical Hospitals.</p>
+                    <a href="https://github.com/SaiBharath28/TraumaChat" class="github-link">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Internship Section -->
+        <div class="section">
+            <h2 class="section-title">Experience</h2>
+            <div class="internship-container">
+                <h3>Cyber Security Internship <span class="edu-year">May 2023 – July 2023</span></h3>
+                <p>During my internship in Cyber Security, I gained hands-on experience in utilizing various script kiddie tools, encryption techniques, and network security concepts to strengthen system security. I explored and applied machine learning algorithms, specifically K-Nearest Neighbors (KNN) Classifier and Decision Trees, to enhance cybersecurity by identifying patterns and potential threats in network traffic. The internship provided valuable insights into real-world vulnerabilities and network protection strategies, enriching my knowledge in both theoretical and practical aspects of cybersecurity.<br>
+
+                    <br><mark>Key Highlights</mark><br>
+
+                    <ul>
+                        <li>Proficiency in using Kali Linux for vulnerability scanning.</li>
+                        <li>Experience with machine learning-based approaches to detect network anomalies.</li>
+                        <li>Exposure to advanced encryption techniques and securing network communications.</li>
+                    </ul>
+                    
+                   </p>
+            </div>
+        </div>
+
+        <!-- Certifications and Interests Section -->
+        <!-- Certifications Section -->
+        <div class="section">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certification-container">
+                <div class="cert-item">
+                    <span>Python Programming - GeeksforGeeks</span>
+                    <a href="https://www.linkedin.com/posts/sai-bharath-balam-4500b02b2_completion-certificate-python-program-by-activity-7281915572139741184-vnTm?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEse3XwBAdLnRYDSUQD5knMWFNAy3E0InyY" class="cert-button">View Certificate</a>
+                </div>
+                <div class="cert-item">
+                    <span>Artificial Intelligence Fundamentals - IBM</span>
+                    <a href="https://www.credly.com/badges/a113f986-7e50-48b9-9344-03c09395c83f/linked_in_profile" class="cert-button">View Certificate</a>
+                </div>
+                <div class="cert-item">
+                    <span>Accenture Data Analytics and Visualization  - Forage</span>
+                    <a href="https://www.linkedin.com/posts/sai-bharath-balam-4500b02b2_forage-certificate-activity-7283715247025106944-m4ZJ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEse3XwBAdLnRYDSUQD5knMWFNAy3E0InyY" class="cert-button">View Certificate</a>
+                </div>
+                <div class="cert-item">
+                    <span>WebDevelopmentFundamentals - IBM</span>
+                    <a href="https://www.credly.com/badges/04d0a007-d3b8-4b8c-8b24-40c1c693bb0a/linked_in_profile" class="cert-button">View Certificate</a>
+                </div>
+                <div class="cert-item">
+                    <span>SQL(Intermediate) - HakerRank</span>
+                    <a href="https://www.hackerrank.com/certificates/47ab166bfb18" class="cert-button">View Certificate</a>
+                </div>
+                <div class="cert-item">
+                    <span>Career Essentials in Software Development  - Microsoft and LinkedIn</span>
+                    <a href="https://www.linkedin.com/learning/certificates/db6db0cc2c72e7916d17e56fed23761e331ac396c7fad4c8f3a19bf6e1d133bd" class="cert-button">View Certificate</a>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+
+        <!-- Interests Section -->
+        <div class="section">
+            <h2>Interests</h2>
+            <div class="interests-container">
+                <div class="interest-item"><i class="fas fa-baseball-ball"></i> Cricket</div>
+                <div class="interest-item"><i class="fas fa-dumbbell"></i> Gym</div>
+                <div class="interest-item"><i class="fas fa-chess"></i> Chess</div>
+                <div class="interest-item"><i class="fas fa-video"></i> Video Editing</div>
+                <div class="interest-item"><i class="fas fa-camera"></i> Photography</div>
+                <div class="interest-item"><i class="fas fa-hands-helping"></i> Volunteering</div>
+            </div>
+            
+            
+        </div>
+    </div>
+</body>
+</html>
